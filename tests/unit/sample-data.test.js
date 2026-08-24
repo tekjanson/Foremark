@@ -100,3 +100,21 @@ test('architecture connections reference real node names', () => {
     }
   }
 });
+
+test('construction templates generate domain-appropriate data', () => {
+  const rfi = BUILTIN_TEMPLATES.find((t) => t.id === 'rfi-log');
+  assert.ok(rfi, 'rfi-log template exists');
+  const rows = generateRecords(rfi, 20);
+  const statusOpts = rfi.fields.find((f) => f.key === 'status').options;
+  for (const r of rows) {
+    assert.ok(statusOpts.includes(r.status), `status ${r.status}`);
+    // Spec section uses CSI MasterFormat "NN NN NN — Name".
+    assert.match(r.specSection, /^\d{2} \d{2} \d{2}/, `spec section: ${r.specSection}`);
+  }
+
+  const submittal = BUILTIN_TEMPLATES.find((t) => t.id === 'submittal-log');
+  const subRows = generateRecords(submittal, 10);
+  for (const r of subRows) {
+    assert.match(r.number, /^SUB-\d{3}$/, `submittal number: ${r.number}`);
+  }
+});

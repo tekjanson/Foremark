@@ -16,8 +16,8 @@ test('app boots and seeds built-in templates', async ({ page }) => {
   await page.goto('/');
   const nav = page.locator('#template-list .nav-item');
   await expect(nav.first()).toBeVisible();
-  // Nine generic built-in templates.
-  await expect(nav).toHaveCount(9);
+  // Nine generic built-ins + six construction-pack templates.
+  await expect(nav).toHaveCount(15);
   await expect(page.locator('.sidebar-brand')).toContainText('Foremark');
 });
 
