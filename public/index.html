@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foremark</title>
+    <meta
+      name="description"
+      content="Foremark — self-hosted template engine for structured data, with client-side encryption and one-off AI generation."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B1%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/templates.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <span class="logo">▦</span>
+          <div class="brand-text">
+            <span class="brand-name">Foremark</span>
+            <span class="brand-tag">Structure for anything you track</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-heading">
+            <span>Templates</span>
+            <button
+              id="new-template-btn"
+              class="btn btn-ghost btn-sm"
+              title="New template"
+            >
+              ＋
+            </button>
+          </div>
+          <nav id="template-list"></nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <button id="settings-btn" class="btn btn-ghost btn-sm" title="AI settings">
+            ⚙
+          </button>
+          <button id="import-btn" class="btn btn-ghost btn-sm" title="Import JSON backup">
+            ⬆
+          </button>
+          <button id="demo-btn" class="btn btn-ghost btn-sm" title="Toggle demo mode (auto-generate sample data)">
+            🎲 Demo: Off
+          </button>
+          <button id="theme-btn" class="btn btn-ghost btn-sm grow">Theme</button>
+        </div>
+      </aside>
+
+      <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+      <!-- Workspace -->
+      <main class="workspace">
+        <header class="topbar">
+          <button
+            id="menu-btn"
+            class="btn btn-ghost btn-icon menu-btn"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+          <h2 id="workspace-title">Foremark</h2>
+          <div id="view-tabs" class="view-tabs"></div>
+          <div class="topbar-actions">
+            <span id="vault-indicator" class="vault-indicator locked" role="button" tabindex="0"
+              >🔒 Vault locked</span
+            >
+            <button id="vault-btn" class="btn btn-sm vault-btn">Vault</button>
+          </div>
+        </header>
+        <section id="workspace-body" class="workspace-body"></section>
+      </main>
+    </div>
+
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>

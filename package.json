@@ -1,0 +1,33 @@
+{
+  "name": "foremark",
+  "version": "1.0.0",
+  "description": "Self-hosted, zero-cloud template engine for structured data, workflow automation, client-side encryption, and one-off AI generation.",
+  "type": "module",
+  "main": "server/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "test": "node --test 'tests/unit/*.test.js'",
+    "test:e2e": "playwright test",
+    "test:all": "npm test && npm run test:e2e"
+  },
+  "keywords": [
+    "self-hosted",
+    "workflow",
+    "encryption",
+    "ai",
+    "sqlite",
+    "local-first"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0"
+  }
+}

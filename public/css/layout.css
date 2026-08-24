@@ -1,0 +1,319 @@
+/* public/css/layout.css
+   Application shell: sidebar, topbar, workspace. */
+
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────── */
+.sidebar {
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+}
+.sidebar-brand .brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;
+}
+.sidebar-brand .brand-name {
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.01em;
+}
+.sidebar-brand .brand-tag {
+  font-weight: 500;
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-brand .logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.sidebar-section {
+  padding: var(--space-2) var(--space-3);
+  overflow-y: auto;
+  flex: 1;
+}
+.sidebar-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  padding: var(--space-3) var(--space-2) var(--space-1);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  background: transparent;
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  font-size: var(--fs-sm);
+}
+.nav-item:hover {
+  background: var(--surface-hover);
+}
+.nav-item.active {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+  font-weight: 600;
+}
+.nav-item .nav-icon {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+}
+.nav-item .nav-count {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* ── Main workspace ──────────────────────────────────────────────────── */
+.workspace {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+.topbar h2 {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+.topbar .topbar-actions {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.view-tabs {
+  display: flex;
+  gap: var(--space-1);
+  background: var(--bg-sunken);
+  padding: 3px;
+  border-radius: var(--radius-sm);
+}
+.view-tab {
+  padding: var(--space-1) var(--space-3);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+.view-tab.active {
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+.workspace-body {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-5);
+}
+
+.vault-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+.vault-indicator.locked {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+.vault-indicator.unlocked {
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 40%, transparent);
+  background: color-mix(in srgb, var(--success) 10%, transparent);
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  text-align: center;
+  color: var(--text-muted);
+}
+.empty-state .big {
+  font-size: 3rem;
+  margin-bottom: var(--space-3);
+}
+
+/* Hamburger + backdrop are desktop-hidden by default. */
+.menu-btn {
+  display: none;
+  font-size: 20px;
+}
+.sidebar-backdrop {
+  display: none;
+}
+
+/* ── Tablet ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .app {
+    grid-template-columns: 220px 1fr;
+  }
+  .topbar {
+    padding: var(--space-3) var(--space-4);
+  }
+  .workspace-body {
+    padding: var(--space-4);
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  /* Off-canvas sidebar */
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(84vw, 300px);
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 55;
+  }
+  .sidebar-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Topbar reflows to two rows: [menu · title · vault] then [view tabs] */
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: 0;
+    flex: 0 0 auto;
+  }
+  .topbar {
+    flex-wrap: wrap;
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+  .topbar h2 {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--fs-base);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .topbar .topbar-actions {
+    order: 2;
+    margin-left: 0;
+    flex: 0 0 auto;
+  }
+  .view-tabs {
+    order: 3;
+    flex: 1 1 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .view-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  /* The separate "Vault" button is redundant — the indicator is tappable. */
+  .vault-btn {
+    display: none;
+  }
+
+  .workspace-body {
+    padding: var(--space-3);
+  }
+
+  /* Comfortable tap targets. */
+  .btn {
+    min-height: 40px;
+  }
+  .btn-sm,
+  .btn-icon {
+    min-height: 34px;
+  }
+  .nav-item {
+    padding: var(--space-3);
+  }
+}
+

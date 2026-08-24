@@ -1,0 +1,18 @@
+services:
+  foremark:
+    build: .
+    image: foremark:latest
+    container_name: foremark
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DATA_DIR: /app/data
+      DEFAULT_AI_PROVIDER: ${DEFAULT_AI_PROVIDER:-openai}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://localhost:11434}
+    volumes:
+      - ./data:/app/data

@@ -1,0 +1,523 @@
+/* public/css/templates.css
+   Table, Card, Form, Kanban, RFI, modal, and toast component styling. */
+
+/* ── Table view ──────────────────────────────────────────────────────── */
+.data-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: auto;
+  background: var(--bg-elevated);
+}
+.data-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--fs-sm);
+}
+.data-table th,
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+.data-table th {
+  background: var(--bg-sunken);
+  position: sticky;
+  top: 0;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  z-index: 1;
+}
+.data-table tbody tr:hover {
+  background: var(--surface-hover);
+}
+.data-table .cell-input {
+  border: 1px solid transparent;
+  background: transparent;
+  padding: var(--space-1) var(--space-2);
+}
+.data-table .cell-input:hover {
+  border-color: var(--border);
+}
+.data-table .row-actions {
+  display: flex;
+  gap: var(--space-1);
+  opacity: 0;
+}
+.data-table tr:hover .row-actions {
+  opacity: 1;
+}
+
+/* ── Cards view ──────────────────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+.record-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+.record-card h4 {
+  margin: 0 0 var(--space-2);
+}
+.record-card .field-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-1) 0;
+  font-size: var(--fs-sm);
+  border-bottom: 1px dashed var(--border);
+}
+.record-card .field-row:last-child {
+  border-bottom: none;
+}
+.record-card .field-row .k {
+  color: var(--text-muted);
+}
+
+/* ── Form view ───────────────────────────────────────────────────────── */
+.form-view {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+.form-field {
+  margin-bottom: var(--space-4);
+}
+.form-field .field-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+.field-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.magic-btn {
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  line-height: 1;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.magic-btn:hover {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.magic-btn.busy {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Kanban ──────────────────────────────────────────────────────────── */
+.kanban {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  min-height: 100%;
+}
+.kanban-col {
+  flex: 0 0 280px;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  max-height: 100%;
+}
+.kanban-col.drag-over {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-sunken));
+}
+.kanban-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 650;
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-3);
+  padding: 0 var(--space-1);
+}
+.kanban-col-head .count {
+  color: var(--text-faint);
+  font-weight: 500;
+}
+.kanban-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin-bottom: var(--space-2);
+  box-shadow: var(--shadow-sm);
+  cursor: grab;
+}
+.kanban-card:active {
+  cursor: grabbing;
+}
+.kanban-card h5 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--fs-sm);
+}
+.kanban-card .meta {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+/* ── Status & priority pills ─────────────────────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+.pill[data-status="open"],
+.pill[data-status="todo"] {
+  color: var(--accent);
+}
+.pill[data-status="in-progress"],
+.pill[data-status="in progress"] {
+  color: var(--warning);
+}
+.pill[data-status="done"],
+.pill[data-status="closed"],
+.pill[data-status="resolved"] {
+  color: var(--success);
+}
+.pill[data-priority="high"],
+.pill[data-priority="critical"] {
+  color: var(--danger);
+}
+
+.lock-icon {
+  color: var(--warning);
+  font-size: 0.9em;
+}
+.enc-value {
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+}
+
+/* ── Architecture diagram ────────────────────────────────────────────── */
+.diagram-wrap {
+  position: relative;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  background-image: radial-gradient(
+    var(--border) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+.diagram-board {
+  position: relative;
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+  padding: var(--space-5);
+  width: max-content;
+  min-width: 100%;
+  min-height: 420px;
+}
+.diagram-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 180px;
+}
+.diagram-col-label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+  text-align: center;
+  font-weight: 700;
+}
+.diagram-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+  color: var(--border-strong);
+}
+.diagram-svg path.edge {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  opacity: 0.75;
+}
+.arch-node {
+  position: relative;
+  z-index: 2;
+  width: 180px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.12s;
+}
+.arch-node:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.arch-node h5 {
+  margin: 0 0 4px;
+  font-size: var(--fs-sm);
+}
+.arch-node .node-tech {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+.arch-node .node-type {
+  text-transform: capitalize;
+}
+/* Type-coded accents */
+.arch-node[data-type='frontend'] { border-left-color: var(--accent); }
+.arch-node[data-type='api'] { border-left-color: #06b6d4; }
+.arch-node[data-type='service'] { border-left-color: #a855f7; }
+.arch-node[data-type='database'] { border-left-color: var(--success); }
+.arch-node[data-type='cache'] { border-left-color: #f59e0b; }
+.arch-node[data-type='queue'] { border-left-color: #ec4899; }
+.arch-node[data-type='storage'] { border-left-color: #14b8a6; }
+.arch-node[data-type='auth'] { border-left-color: var(--danger); }
+.arch-node[data-type='external'] { border-left-color: var(--warning); }
+
+/* ── Modal ───────────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  padding: var(--space-4);
+  backdrop-filter: blur(2px);
+}
+.modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: min(560px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal.wide {
+  width: min(820px, 100%);
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+.modal-head h3 {
+  margin: 0;
+}
+.modal-body {
+  padding: var(--space-5);
+  overflow-y: auto;
+}
+.modal-footer {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* ── Toasts ──────────────────────────────────────────────────────────── */
+.toast-stack {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 200;
+}
+.toast {
+  min-width: 240px;
+  max-width: 380px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  animation: toast-in 0.18s ease-out;
+}
+.toast .toast-icon {
+  font-size: 18px;
+}
+.toast.success {
+  border-left: 4px solid var(--success);
+}
+.toast.error {
+  border-left: 4px solid var(--danger);
+}
+.toast.info {
+  border-left: 4px solid var(--accent);
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Spinner */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+.toolbar .search {
+  max-width: 260px;
+}
+.field-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.field-def-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 130px auto;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* ── Mobile refinements ──────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .toolbar {
+    gap: var(--space-2);
+  }
+  .toolbar .search {
+    max-width: none;
+    flex: 1 1 100%;
+    order: -1; /* search sits on its own row at the top */
+    min-height: 40px;
+  }
+  .toolbar .grow {
+    display: none; /* let buttons wrap naturally instead of pushing apart */
+  }
+  .toolbar .btn {
+    flex: 1 1 auto; /* buttons share the row evenly */
+    justify-content: center;
+  }
+
+  /* Kanban: one column at a time, swipe horizontally. */
+  .kanban {
+    gap: var(--space-3);
+  }
+  .kanban-col {
+    flex: 0 0 82vw;
+  }
+
+  /* Diagram: tighter columns, swipe horizontally. */
+  .diagram-board {
+    gap: 36px;
+    padding: var(--space-4);
+  }
+  .diagram-col {
+    min-width: 150px;
+  }
+  .arch-node {
+    width: 150px;
+  }
+
+  /* Table: drop the inline AI wand (still available in Form view) so data
+     cells get full width, and keep columns readable while scrolling. */
+  .data-table .magic-btn {
+    display: none;
+  }
+  .data-table th,
+  .data-table td {
+    white-space: nowrap;
+  }
+  .data-table .cell-input,
+  .data-table .field-input-wrap {
+    min-width: 130px;
+  }
+
+  /* Modals go near-fullscreen with tighter padding. */
+  .modal,
+  .modal.wide {
+    width: 100%;
+    max-height: 92vh;
+  }
+  .modal-head {
+    padding: var(--space-3) var(--space-4);
+  }
+  .modal-body {
+    padding: var(--space-4);
+  }
+  .modal-footer {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  /* Schema editor rows stack vertically. */
+  .field-def-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-view {
+    padding: var(--space-4);
+  }
+
+  .toast-stack {
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-3);
+  }
+  .toast {
+    min-width: 0;
+    max-width: none;
+  }
+}
+
