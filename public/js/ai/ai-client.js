@@ -13,7 +13,7 @@ import {
 export const PROVIDER_MODELS = {
   openai: ['gpt-4o', 'gpt-4o-mini'],
   anthropic: ['claude-3-5-sonnet-20241022', 'claude-3-haiku-20240307'],
-  gemini: ['gemini-1.5-pro', 'gemini-1.5-flash'],
+  gemini: ['gemini-flash-latest', 'gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-pro-latest'],
   ollama: ['llama3.1', 'mistral', 'qwen2.5'],
 };
 

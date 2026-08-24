@@ -14,7 +14,7 @@ const DEFAULTS = {
   anthropic: {
     model: () => process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022',
   },
-  gemini: { model: () => process.env.GEMINI_MODEL || 'gemini-1.5-flash' },
+  gemini: { model: () => process.env.GEMINI_MODEL || 'gemini-flash-latest' },
   ollama: { model: () => process.env.OLLAMA_MODEL || 'llama3.1' },
 };
 
